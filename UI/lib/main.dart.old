@@ -1,0 +1,201 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Modern App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: WelcomePage(),
+    );
+  }
+}
+
+class WelcomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Spacer(),
+            Center(
+              child: Column(
+                children: [
+                  Text(
+                    'Welcome to App',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Here's a good place to showcase the app's key features.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  ),
+                  SizedBox(height: 20),
+                  Icon(Icons.image, size: 100, color: Colors.grey[400]),
+                ],
+              ),
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                    child: Text('Log in'),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
+                    child: Text('Sign up'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Login or Sign Up')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Username, email or mobile number',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Continue'),
+              style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
+            ),
+            SizedBox(height: 20),
+            Divider(),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.apple),
+              label: Text('Continue with Apple'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, foregroundColor: Colors.white),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.g_mobiledata, color: Colors.white),
+              label: Text('Continue with Google'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.facebook, color: Colors.white),
+              label: Text('Continue with Facebook'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'By creating a new account, Terms & Conditions and Privacy Policy will apply.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SignUpPage extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Your Details')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              Text(
+                'Your details',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Lorem ipsum dolor sit amet, adipiscing elit, sed eiusmod tempor incididunt.',
+                style: TextStyle(color: Colors.grey),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'First Name', border: OutlineInputBorder()),
+                validator: (value) => value!.isEmpty ? 'Enter your first name' : null,
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Last Name', border: OutlineInputBorder()),
+                validator: (value) => value!.isEmpty ? 'Enter your last name' : null,
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Birthday (mm/dd/yyyy)', border: OutlineInputBorder()),
+                keyboardType: TextInputType.datetime,
+                validator: (value) => value!.isEmpty ? 'Enter your date of birth' : null,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Navigate to the next step
+                  }
+                },
+                child: Text('Continue'),
+                style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

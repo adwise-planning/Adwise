@@ -1,0 +1,43 @@
+name: adwise
+description: "A new Flutter project."
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  dropdown_search: ^6.0.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  fonts:
+    - family: Proximanova
+      fonts:
+        - asset: assets/fonts/proximanova_regular.ttf
+        - asset: assets/fonts/proximanova_black.ttf
+    - family: Croogla
+      fonts:
+        - asset: assets/fonts/Croogla4F.ttf
+
+  uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
+
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/images/
