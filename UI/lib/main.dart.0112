@@ -1,0 +1,130 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final ColorScheme colorScheme = ColorScheme.fromSeed(
+      brightness: MediaQuery.platformBrightnessOf(context),
+      seedColor: const Color.fromRGBO(40, 71, 173, 1),
+    );
+
+    return MaterialApp(
+      title: 'Adwise',
+      theme: ThemeData(
+        fontFamily: 'Croogla',
+        colorScheme: colorScheme,
+        // primarySwatch: Color.fromARGB(100, 40, 71, 173),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        ),
+      ),
+      home: const WelcomeScreen(),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      backgroundColor: Colors.white, // White page background
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Logo with transparent background
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Image.asset(
+                  'logo.png', // Replace with your transparent logo path
+                  height: screenHeight * 0.2, // Adjust size dynamically
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.image_not_supported,
+                      size: 100,
+                      color: Colors.grey,
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.03),
+              // Welcome text: Dynamically adjust font size
+              Text(
+                'Welcome to AddWise!',
+                style: TextStyle(
+                  fontSize: screenHeight * 0.03,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromRGBO(47, 60, 79, 1), // Black text for better visibility
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.05),
+              // Horizontal button row
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // Sign Up button
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Add your sign-up functionality
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: screenHeight * 0.02,
+                          ),
+                        ),
+                        child: const Text('Sign Up'),
+                      ),
+                    ),
+                    SizedBox(width: screenWidth * 0.05), // Spacing between buttons
+                    // Login button
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          // Add your login functionality
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                          side: const BorderSide(color: Colors.blue),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: screenHeight * 0.02,
+                          ),
+                        ),
+                        child: const Text('Login'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

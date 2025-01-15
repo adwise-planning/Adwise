@@ -1,0 +1,6 @@
+{
+  "appTitle": "adwise",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
